@@ -1,0 +1,70 @@
+body{
+    font-family: 'Khmer', Khmer, monospace;
+    color: white;
+    background-color: white;
+}
+header{
+    
+    display:flex;
+    justify-content:center ;
+    text-align: center;
+    height: 70px;
+    background-color: #6A67FF;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);     
+}
+
+
+.imagen{
+    height: 50px;
+
+}
+.card{
+
+    width: 40%;
+    justify-content: center;
+    text-align: center;
+    margin: 0 30px;
+    height: 50%;
+    display:flex ;
+  
+
+}
+
+
+.mapa{
+
+    text-align: center;
+    height: auto;
+    width: auto;
+    
+}
+
+.top{
+    border: 10px solid #1C6EA4;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    margin: 0 5; 
+    text-align: center;
+    width: 90%;
+  
+}
+.card-img-top{
+    height: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.0.4);
+
+
+ 
+
+
+}.btn-primary{
+     background-color: #6A67FF;
+     width: 70%;
+     height: 130%;
+     font-size: 120%;
+     text-align: center;
+     justify-content: center;
+     border: #6A67FF;
+}
