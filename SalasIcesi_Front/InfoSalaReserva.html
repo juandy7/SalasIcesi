@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel = "icon" type="image/png" href="Imagenes/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <title>Gestión de Sala</title>
+    <style>
+
+        .informacion{
+            background-color: #AC55E1;
+            height: 100vh;
+            width: 50%;
+            float: right;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }.foto{
+            height: 100vh;
+            width: 50%;
+            float: left;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }.contenedor{
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+
+        }.col{
+            height: 60px;
+            justify-content: center;
+            align-self: center;
+
+        }.btn-lg{
+
+            margin: 15px;
+            width: 80%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+            
+
+        }.foto{
+
+            background-color: #191919;
+
+        
+        }.card-body{
+
+            color: white;
+
+        }
+       
+    </style>
+</head>
+<body>
+    
+    <div class = "foto">
+        <a style="align-self: flex-start; justify-self: flex-start;position: absolute ; top:0 ; margin: 10px; width: 20px;" href="AdminPrincipal.html"><img src="Imagenes/BackAdmin.png"></a>
+        <div style="width: 80%; background-color: #AC55E1; border: #191919;" class="card mb-3">
+            <img src="Imagenes/SalonDefault.jpeg" class="card-img-top" >
+            <div style ="justify-content: center;align-items: center;"class="card-body">
+              <h2 class="card-title">101E</h2>
+              <ul>
+                <li>Ubicación: Primer piso M</li>
+                <li>Capacidad: Máximo 6 personas</li>
+                <li>Recursos: Tablero, TV, Sonido</li>
+              </ul>
+    
+    
+            </div>
+          </div>
+          <u><a style="color: white;text-decoration: none;" href = "GestionSala.html">Ver Sala </a></u>
+            
+    </div>
+
+    <div  class = "informacion">
+
+        <div style ="width:70%;height: 100%;position: relative;"class = "contenedor">
+
+
+            <a href="" style="background-color: #E75656; border-color: #E75656;"type="button" class="btn btn-primary btn-lg">Inhabilitar</a>
+            <a href="" style="background-color: #68F66E; border-color: #68F66E;" type="button" class="btn btn-primary btn-lg">Asignar</a>
+            <a href="" style="background-color: #84AAE1; border-color: #84AAE1;" type="button" class="btn btn-primary btn-lg">Cancelar</a>
+
+        </div>
+        
+
+    </div>
+    
+</body>
+</html>

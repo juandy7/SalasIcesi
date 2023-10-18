@@ -3,100 +3,40 @@
 <head>
     <link rel = "icon" type="image/png" href="Imagenes/logo.png">
     <meta charset="UTF-8">
+    <link rel = "stylesheet" href = "estiloRegistro.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <style>
-    
-        body {
-            font-family: Khmer, sans-serif;
-            background-color: #eee7e7;
-            background-image: "C:\Users\Pc\Downloads\Login.jpg";
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            padding: 0;
-            background: url("/Imagenes/Login2.jpeg");   
-            background-size: cover;
-            background-position: center;
-            font-family: sans-serif;
-            
-            
-        }
 
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 500px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 20px;
-            font-style: Khmer;
-            
-        }
-
-        input {
-            width: 100%;
-            padding: 13px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-            background-color: #d9d9d9;
-            border: 0px solid #ccc; 
-            font-size: 16px;
-            border-radius: 6px;
-        }
-
-        button {
-            background-color: #6A67FF;
-            color: #fff;
-            padding: 12px 200px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 25px;
-            font-size: large;
-            text-decoration: none ;
-
-            
-        }
-
-        button:hover {
-            background-color: #1107cc;
-        }.a{
-            text-decoration: none;
-        }
-
-
-        
-
-    </style>
 </head>
 <body>
 
     
-   
+    <header>
+        <h1 style="margin-left: 20px;" >  Universidad Icesi</h1>
+    </header>
+    
+    <p></p>
+    <br></br>
+    
+    <div class="contenedor">
+    <h1 style="font-family: 'Khmer';font-style: normal;font-weight: 100;font-size: 50px;line-height: 25px;color: #031CFF;mix-blend-mode: normal;">Iniciar Sesión</h1>
     <form>
         <strong><label for="username">Usuario:</label></strong>
-        <p></p>
 
-        <input type="text" id="username" name="username" required>
+        <input type="text" id="username" name="username" >
 
-        <strong><label for="password">Contraseña:</label> 
-            <p></p>
-        <input type="password" id="password" name="password" required >
+        <b><label for="password">Contraseña:</b> 
+        <input type="password" id="password" name="password"  >
         <p></p>
 
         <strong><button>
-            <a href="MenuPrincipal.html" class="btn btn-primary" id = "IngresarId">INGRESAR</a>
+            <a style="text-decoration: none; color: white;font-size: larger;"class="btn btn-primary" id = "IngresarId" href="MenuPrincipal.html" >INGRESAR</a>
         </strong></button>
     </form>
+
+    <strong><u><br><a style="color: black;text-decoration: none;" href="https://www.icesi.edu.co/pic_usuario_unico/newpass">¿Olvidó su nombre de usuario o contraseña?</a></br></strong><u>
+
+    </div>
 
 
 </body>

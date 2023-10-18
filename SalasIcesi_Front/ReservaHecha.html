@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "icon" type="image/png" href="Imagenes/logo.png">
-    <title>No hay Reservas</title>
+    <title>Reserva éxitosa</title>
 
     <style>
         body {
@@ -16,32 +16,37 @@
             font-family: Khmer;
             border: 20px solid #6A67FF;
             background-size: cover;
-            background:url("Imagenes/NoReservas.png");
+            background:url("Imagenes/ReservaHecha.png");
             background-repeat: no-repeat; 
-            background-size: contain;
+            background-size: 20%;
+            background-position: 100px;
+            background-position-y:bottom;
             position: relative;
+
         
         }
 
         .texto-centrado {
             text-align: center;
+            justify-content: center;
             margin: 0 20px; 
+            width: 100%;
         }.esquina-inferior-derecha {
             position: absolute;
             bottom: 0;
             right: 0;
             margin: 20px; 
+            float: bottom;
         }
-     
     </style>
 </head>
 <body>
-    <div class="texto-centrado">
-        <h1 >No Has Hecho ninguna Reserva</h1>
-        <a style="color:black" href="MapaUniversidad.html">Hacer Una Reserva</a>
+    <div  class="texto-centrado">
+        <h1 >Sala de Estudio Reservada Con Éxito</h1>
+        <div class =".esquina-inferior-derecha ">
+            <p><a  href="MenuPrincipal.html">Volver</a></p>
+        </div>
     </div>
-    <div class =".esquina-inferior-derecha ">
-        <p><a  href="MenuPrincipal.html"><img src = "Imagenes/back.png" ></a></p>
-    </div>
+
 </body>
 </html>

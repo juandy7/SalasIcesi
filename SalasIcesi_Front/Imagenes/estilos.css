@@ -31,7 +31,13 @@ header{
 }
 
 
+.mapa{
 
+    text-align: center;
+    height: auto;
+    width: auto;    
+    
+}
 
 .top{
     border: 10px solid #1C6EA4;
