@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
-    <style>
+    <link ret="stylesheet" href="ScrollScript.js">
+
+        <style>
         .cambiarColor {
-            background-color: #3498db;
+            background-color: green;
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -14,7 +16,7 @@
         }
 
         .cambiarColor.clicked {
-            background-color: #c0392b;
+            background-color: blue  ;
         }
     </style>
     <title>Botones que Cambian de Color en Bootstrap</title>
@@ -24,14 +26,16 @@
 <button class="btn btn-primary btn-lg cambiarColor" onclick="cambiarColor(this)">Botón 1</button>
 <button class="btn btn-primary btn-lg cambiarColor" onclick="cambiarColor(this)">Botón 2</button>
 <button class="btn btn-primary btn-lg cambiarColor" onclick="cambiarColor(this)">Botón 3</button>
+<button class="btn btn-primary btn-lg cambiarColor" onclick="cambiarColor(this)">Botón 3</button>
+
 
 <script>
-    function cambiarColor(boton) {
-        boton.classList.toggle('clicked');
-    }
+ 
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="ScrollScript.js" integrity="..."></script>
+
 
 </body>
 </html>
