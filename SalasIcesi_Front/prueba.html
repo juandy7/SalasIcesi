@@ -20,7 +20,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-        }.foto{
+         }.foto{
             height: 100vh;
             width: 50%;
             float: left;
@@ -29,32 +29,37 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-        }.contenedor{	
-	
-			width: 70%;
-			height: 70%;
-			border: none;
-			margin: 20px 0;
-			justify-content: center;
-			align-items: center;
-			text-align: center;
-
-        }.col{
-            height: 60px;
+          }.contenedor{	
+    
+            width: 70%;
+            height: 70%;
+            border: none;
+            margin: 20px 0;
             justify-content: center;
-            align-self: center;
-        }
+            align-items: center;
+            text-align: center;
 
-        .cambiarColor:checked + label {
-            background-color: #6A67FF;
-			border-color: #6A67FF;
-		}
+            }.col{
+                height: 60px;
+                justify-content: center;
+                align-self: center;
+            }
 
-        .cambiarColor {
+            .btn-secondary :checked + label {
 
-            display: none;
+                background-color: green;
+                border-color: green;
+                   
 
-        }
+            }.btn-secondary{
+
+              background-color: green;
+
+
+            }
+
+          
+            
     </style>
 </head>
 <body>
@@ -62,7 +67,7 @@
     <div class = "foto">
     <a style="align-self: flex-start; justify-self: flex-start;position: absolute ; top:0 ; margin: 10px;" href="MenuPrincipal.html"><img src="Imagenes/back.png"></a>
     <div style="width: 80%;" class="card mb-3">
-        <img src="Imagenes/SalonDefault.jpeg" class="card-img-top" alt="...">
+        <img src="Imagenes/SalonDefault.jpeg" class="card-img-top" >
         <div style ="justify-content: center;align-items: center;"class="card-body">
           <h2 class="card-title">101E</h2>
           <ul>
@@ -79,13 +84,16 @@
 
     <div  class = "informacion">
 
-
-
 			<div class="contenedor">
-				<button class="btn btn-primary btn-lg cambiarColor" onclick="cambiarColor(this)">Botón 1</button>
-				<button class="btn btn-primary btn-lg cambiarColor" onclick="cambiarColor(this)">Botón 2</button>
-				<button class="btn btn-primary btn-lg cambiarColor" onclick="cambiarColor(this)">Botón 3</button>
-				<button class="btn btn-primary btn-lg cambiarColor" onclick="cambiarColor(this)">Botón 3</button>
+
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary miBoton" onclick="cambiarColor(this)">Botón 1</button>
+          <button class="btn btn-primary miBoton" onclick="cambiarColor(this)">Botón 2</button>
+          <button class="btn btn-primary miBoton" onclick="cambiarColor(this)">Botón 3</button>
+          
+
+        </div>
+
 			</div> 			
 
 		</div>
