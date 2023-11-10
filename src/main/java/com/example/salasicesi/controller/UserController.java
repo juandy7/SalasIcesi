@@ -56,20 +56,5 @@ public class UserController {
         }
     }
 
-    @GetMapping("salasIcesi/disponibilidad")
-    public ResponseEntity<?> disponibilidadSala(@RequestParam String numSala) {
-        var salas = repositorioSalas.getSalabyNum(numSala);
-        if (salas.size() > 0) {
-            boolean estadoSala = salas.get(0).isEstado();
-            String disponibilidad = estadoSala ? "Disponible" : "No Disponible";
-            return ResponseEntity.status(200).body(disponibilidad);
-        } else {
-            return ResponseEntity.status(404).body("Sala no encontrada");
-        }
-    }
-
-
-
-
 
 }
