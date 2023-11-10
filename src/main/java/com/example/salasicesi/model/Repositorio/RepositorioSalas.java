@@ -10,8 +10,6 @@ import java.util.List;
 
 @Repository
 public interface RepositorioSalas extends CrudRepository<Sala,Long> {
-    @Query("SELECT s FROM Sala s WHERE s.numSala = :buscarNumSala")
-    List<Sala> getSalabyNum(String buscarNumSala);
 
 
 }
