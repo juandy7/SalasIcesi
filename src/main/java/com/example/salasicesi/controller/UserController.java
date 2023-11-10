@@ -44,7 +44,6 @@ public class UserController {
     }
 
 
-
     //Mostrar todos los usuarios
     @GetMapping("salasIcesi/usersAll")
     public ResponseEntity<?> listUsuarios(@RequestParam("Autorizacion") long aute){
