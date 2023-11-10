@@ -27,15 +27,16 @@ public class UserController {
     //Loguin del usuario
     @PostMapping("salasIcesi/login")
     public ResponseEntity<?> login(@RequestBody LoginUsuarioDTO user) {
-        var usuario = repositorioUsuario.findUserByEmailAndPassword(user.getEmail(), user.getContrasenha());
+        var usuarios = repositorioUsuario.findUserByEmailAndPassword(user.getEmail(), user.getContrasenha());
 
-        if (!usuario.isEmpty()) {
-            Usuario firstUser = usuario.get(0);
+        if (!usuarios.isEmpty()) {
+            Usuario firstUser = usuarios.get(0);
             Categoria categoria = firstUser.verificarCredenciales(user.getEmail(), user.getContrasenha());
 
+            RolDTO response = new RolDTO(categoria);
             if (categoria != null) {
                 // Las credenciales son correctas, y puedes acceder a la categoría del usuario.
-                return ResponseEntity.status(200).body(categoria);
+                return ResponseEntity.status(200).body(response);
             }
         }
 
