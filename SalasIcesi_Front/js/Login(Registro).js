@@ -36,10 +36,10 @@ ingresarId.addEventListener('click', async function (event) {
       console.log(responseData);
 
       // Verificar la categoría y redirigir a la página correspondiente
-      if (responseData.rol === 'ESTUDIANTE' || responseData.rol === 'PROFESOR') {
+      if (responseData.categoria === 'ESTUDIANTE' || responseData.categoria === 'PROFESOR') {
         window.location.href = 'MenuPrincipal.html';
-      } else if (responseData.rol === 'ADMINNISTRADOR') {
-        //window.location.href = 'AdminPrincipal.html';
+      } else if (responseData.categoria === 'ADMINNISTRADOR') {
+        window.location.href = 'AdminPrincipal.html';
       } else {
         console.error('Categoría desconocida');
       }

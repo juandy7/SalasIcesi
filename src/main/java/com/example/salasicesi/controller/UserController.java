@@ -31,13 +31,10 @@ public class UserController {
 
         if (!usuarios.isEmpty()) {
             Usuario firstUser = usuarios.get(0);
-            Categoria categoria = firstUser.verificarCredenciales(user.getEmail(), user.getContrasenha());
+            UsuarioDTO userReturn = new UsuarioDTO(firstUser.getNombre(), firstUser.getEmail()
+                    ,firstUser.getContrasenha(),firstUser.getCodigo(),firstUser.getCategoria());
+                return ResponseEntity.status(200).body(userReturn);
 
-            RolDTO response = new RolDTO(categoria);
-            if (categoria != null) {
-                // Las credenciales son correctas, y puedes acceder a la categoría del usuario.
-                return ResponseEntity.status(200).body(response);
-            }
         }
 
         return ResponseEntity.status(400).body("Login inválido");
