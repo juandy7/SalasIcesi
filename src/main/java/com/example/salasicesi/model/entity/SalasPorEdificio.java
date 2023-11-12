@@ -8,6 +8,7 @@ public class SalasPorEdificio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @ManyToOne
     @JoinColumn(name = "edificio_id")
     private Edificio edificio;

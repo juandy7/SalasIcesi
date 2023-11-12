@@ -56,5 +56,20 @@ public class UserController {
         }
     }
 
+    @GetMapping("salasIcesi/salones")
+    public ResponseEntity<?>listSalones(@RequestHeader("edificio") String edificio){
+        var edificioXsalon = repositorioSalas.findEdificio(edificio);
+        if (!edificioXsalon.isEmpty()){
+            var edificioEncontrado = edificioXsalon.get(0);
+            var salones = repositorioSalas.findByEdificio(edificioEncontrado.getEdificioID());
+            return ResponseEntity.status(200).body(salones);
+        }else {
+            return ResponseEntity.status(303).body("Edificio no encontrado");
+        }
+
+
+    }
+
+
 
 }
