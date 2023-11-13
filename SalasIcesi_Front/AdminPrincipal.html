@@ -37,18 +37,21 @@
         }.container{
            
             display: flex;
-            align-items: center;
             justify-content: center;
-            height: 90vh;
+            text-align: center;
+            height: 100%;
             
         }.card{
             width: 10px;
-        }.card-img-top{
-            width: 100%;
-        }.btn-primary{
+            margin: 25px;
+        }
+        .btn-primary{
             background-color: #AC55E1;
             border: #AC55E1;
             width: 300px;
+        }.card-img-top{
+
+            height: 80%;
         }
 
 
@@ -56,20 +59,39 @@
 
 <body>
 
-    <header style="align-items: center; position: relative;">
-        <h1 style="font-size: 25px; justify-content: center; color:white;">Administración Salas de Estudio</h1>
-        <img style="width: 70px;right: 0;"src="Imagenes/Exit.png">
+    <header style="align-items: center; position: relative; width: 100%; ">
+        <h1 style="font-size: 25px; justify-content: center; position: relative; color: white;">Administración de salas de estudio</h1>
+        <div class="dropdown">
+          <img style="width: 70px; position: fixed; top: 0; right: 0;" src="Imagenes/Exit.png" data-bs-toggle="dropdown" aria-expanded="true">
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="Registro.html">Cerrar Sesión</a></li>
+          </ul>
+        </div>
+      
+    
     </header>
+    
 
     <div class = "container">
 
     <div class="card" style="width: 50%;">
-        <img src="Imagenes/AdminPrincipa.jpg" class="card-img-top" alt="...">
+        <img  syle="height: 80%" src="Imagenes/AdminPrincipa.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <a href="MapaUniversidadAdmin.html" class="btn btn-primary">Gestionar Salas</a>
         </div>
       </div>
+
+        <div class="card" style="width: 50%;">
+            <img src="Imagenes/Biblio.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <a href="MapaUniversidadAdmin.html" class="btn btn-primary">Historial reservas</a>
+            </div>
+          </div>
     </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="..."></script>
 
     
 </body>

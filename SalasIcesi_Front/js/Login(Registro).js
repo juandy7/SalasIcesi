@@ -50,8 +50,3 @@ ingresarId.addEventListener('click', async function (event) {
     console.error('Error en la solicitud:', error);
   }
 });
-
-
-
-
-
