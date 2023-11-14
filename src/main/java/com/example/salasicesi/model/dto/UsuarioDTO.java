@@ -1,20 +1,19 @@
 package com.example.salasicesi.model.dto;
-import com.example.salasicesi.model.dto.CategoriaDTO;
+import com.example.salasicesi.model.entity.Categoria;
+
 public class UsuarioDTO{
 
     private String nombre;
     private String email;
     private String contrasenha;
     private String codigo;
-    private CategoriaDTO categoria;
+    private Categoria categoria;
 
     //ToDo: Hacer Getters y Setters
 
 
-    public UsuarioDTO() {
-    }
 
-    public UsuarioDTO( String nombre, String email, String contrasenha, String codigo, CategoriaDTO categoria) {
+    public UsuarioDTO(String nombre, String email, String contrasenha, String codigo, Categoria categoria) {
 
         this.nombre = nombre;
         this.email = email;
@@ -22,6 +21,7 @@ public class UsuarioDTO{
         this.codigo = codigo;
         this.categoria = categoria;
     }
+
 
     public String getNombre() {
         return nombre;
@@ -55,13 +55,11 @@ public class UsuarioDTO{
         this.codigo = codigo;
     }
 
-    public CategoriaDTO getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(CategoriaDTO categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
-
-
 }
