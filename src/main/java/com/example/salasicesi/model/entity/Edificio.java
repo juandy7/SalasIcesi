@@ -10,6 +10,8 @@ public class Edificio {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
 
+
+
     private String edificioID;
 
     @OneToMany(mappedBy = "edificio")
@@ -29,5 +31,13 @@ public class Edificio {
 
     public void setEdificioID(String edificioID) {
         this.edificioID = edificioID;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

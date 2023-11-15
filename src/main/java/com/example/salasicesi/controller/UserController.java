@@ -68,18 +68,19 @@ public class UserController {
             return ResponseEntity.status(403).body("Error al buscar disponibilidad de sala");
     }
 
-    @GetMapping("salasIcesi/salones")
+    @GetMapping("salasIcesi/salones/{edificio}")
     //Recibo un header que es la letra del Edificio
-    public ResponseEntity<?>listSalones(@RequestHeader("edificio") String edificio){
+    public ResponseEntity<?>listSalones(@PathVariable("edificio") String edificio){
         //Tengo una variable "edificioXsalon" que en busca el edificioId(Nombre del edificio) del edificio que me mandaron por el header
         var edificioXsalon = repositorioSalas.findEdificio(edificio);
         //En caso de que ecuentre un edificio (String) entonces se hace un if
         if (!edificioXsalon.isEmpty()){
             //Si hay algun edificio con ese nombre entonces toma el ID de ese edificio de la base de datos y como solo hay uno, toma el de la primera posicion
             var edificioEncontrado = edificioXsalon.get(0);
+
             //Una vez encontrado el ID del edificio se ve que salones estan asociados a este edificio
-            var salones = repositorioSalas.findByEdificio(edificioEncontrado.getEdificioID());
-            SalasPorEdificioDTO response = new SalasPorEdificioDTO(salones);
+            var salones = repositorioSalas.findByEdificio(edificioEncontrado.getId());
+           ;
             //PENDIENTE: Retornar en una lista(me imagino) de cada salon asociado al edificio
             return ResponseEntity.status(200).body(salones);
         }else {

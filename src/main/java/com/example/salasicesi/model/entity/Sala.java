@@ -1,4 +1,5 @@
 package com.example.salasicesi.model.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class Sala {
     private List<GestionSala> gestionesSala;
 
     @OneToMany(mappedBy = "sala")
+    @JsonIgnore
     private List<SalasPorEdificio> salasPorEdificio;
 
     public List<SalasPorEdificio> getSalasPorEdificio() {
