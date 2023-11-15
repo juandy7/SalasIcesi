@@ -55,19 +55,6 @@ public class UserController {
 
     }
 
-    @GetMapping("salasIcesi/disponibilidad")
-    public ResponseEntity<?>disponibilidadSala(@RequestParam("Autorizacion") long aute){
-        var sala = repositorioSalas.findById(aute);
-        if (sala.isPresent()){
-            if (sala.get().isEstado() == false ){
-                return ResponseEntity.status(200).body("Sala disponible");
-            }else
-                return ResponseEntity.status(200).body("Sala ocupada");
-        }
-        else
-            return ResponseEntity.status(403).body("Error al buscar disponibilidad de sala");
-    }
-
     @GetMapping("salasIcesi/salones/{edificio}")
     //Recibo un header que es la letra del Edificio
     public ResponseEntity<?>listSalones(@PathVariable("edificio") String edificio){
