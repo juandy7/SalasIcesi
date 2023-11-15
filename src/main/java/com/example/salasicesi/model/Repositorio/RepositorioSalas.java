@@ -12,9 +12,10 @@ import java.util.List;
 @Repository
 public interface RepositorioSalas extends CrudRepository<Sala,Long> {
 
-    @Query("SELECT s FROM SalasPorEdificio s WHERE s.edificio=:edificio")
-    List<Sala> findByEdificio(String edificio);
-
+    //En esta QUERY se recibe el id de edificio y en la tabla de SalasPorEdificio se busca los salones asociados a este
+    @Query("SELECT s FROM SalasPorEdificio sp INNER JOIN sp.sala s WHERE sp.edificio.id =:edificioId")
+    public List<Sala> findByEdificio(String edificioId);
+    //En esta QUERY se busca el edificio por su edificioID(ej:A,B,C,D,E)
     @Query("SELECT e FROM Edificio e WHERE e.edificioID=:edificio")
     List<Edificio> findEdificio(String edificio);
 }
