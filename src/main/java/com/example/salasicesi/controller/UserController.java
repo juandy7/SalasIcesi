@@ -55,7 +55,7 @@ public class UserController {
 
     }
 
-    @GetMapping("salasIcesi/salones/{edificio}")
+    @GetMapping("   ")
     //Recibo un header que es la letra del Edificio
     public ResponseEntity<?>listSalones(@PathVariable("edificio") String edificio){
         //Tengo una variable "edificioXsalon" que en busca el edificioId(Nombre del edificio) del edificio que me mandaron por el header
