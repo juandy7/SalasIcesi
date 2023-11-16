@@ -88,4 +88,5 @@ public class Sala {
     public void setRecursos(String recursos) {
         this.recursos = recursos;
     }
+
 }
