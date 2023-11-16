@@ -12,6 +12,7 @@
     <style>
 
         .informacion{
+
             background-color: #6A67FF;
             height: 100vh;
             width: 50%;
@@ -20,15 +21,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-        }.foto{
+
+        }
+		.roomDetail{
             height: 100vh;
-            width: 50%;
             float: left;
             width: 50%;
             justify-content: center;
             display: flex;
             flex-direction: column;
             align-items: center;
+
         }.contenedor{	
 	
 			width: 70%;
@@ -62,24 +65,29 @@
 			background-color: #68F66E;
 			border-color: #68F66E;
 		
-		
-		
-		
+
+		}body{
+			justify-content: center;
 		}
     </style>
 </head>
 <body>
+
+	<div id="roomDetail" class="roomDetail">
+		<a style="align-self: flex-start; justify-self: flex-start;position: absolute ; top:0 ;" href="EdificioE_piso1.html"><img src="Imagenes/back.png"></a>
+
+	</div>
+
     
-    <div class = "foto">
-    <a style="align-self: flex-start; justify-self: flex-start;position: absolute ; top:0 ; margin: 10px;" href="MenuPrincipal.html"><img src="Imagenes/back.png"></a>
+   <!-- <div class = "foto">
     <div style="width: 80%;" class="card mb-3">
-        <img src="Imagenes/SalonDefault.jpeg" class="card-img-top" alt="...">
+        <img src="Imagenes/SalonDefault.jpeg" class="card-img-top" id="imagenSalon">
         <div style ="justify-content: center;align-items: center;"class="card-body">
           <h2 class="card-title">101E</h2>
           <ul>
-            <li>Ubicación: Primer piso M</li>
-            <li>Capacidad: Máximo 6 personas</li>
-            <li>Recursos: Tablero, TV, Sonido</li>
+            <li id="item1">Ubicación: Primer piso M</li>
+            <li id="item2">Capacidad: Máximo 6 personas</li>
+            <li id="item3">Recursos: Tablero, TV, Sonido</li>
           </ul>
 
 
@@ -87,6 +95,8 @@
       </div>
       
     </div>
+		-->
+			
 
     <div  class = "informacion">
 
@@ -181,6 +191,9 @@
 	
 		  
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="RoomCard.js"></script>
+	<script src="HorarioDisponible.js"></script>
+
 
    
 </body>

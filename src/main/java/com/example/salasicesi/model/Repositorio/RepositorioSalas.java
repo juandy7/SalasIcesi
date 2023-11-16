@@ -12,4 +12,8 @@ import java.util.List;
 public interface RepositorioSalas extends CrudRepository<Sala,Long> {
 
 
+    @Query("SELECT u FROM Sala u WHERE u.numSala =:num_sala")
+    List<Sala> findClassByNum(String num_sala);
+
+
 }
