@@ -79,8 +79,7 @@ public class UserController {
                 nuevaReserva.setSala(sala.get());
                 nuevaReserva.setUsuario(usuario.get());
                 repositorioGestionSala.save(nuevaReserva);
-                nuevaReserva.setId(UUID.randomUUID().toString());
-                return ResponseEntity.status(200).body(nuevaReserva);
+                return ResponseEntity.status(200).body("Sala reservada exitosamente");
             } else {
                 return ResponseEntity.status(403).body("No se pudo realizar la solicitud. La sala ya está reservada a esa hora.");
             }

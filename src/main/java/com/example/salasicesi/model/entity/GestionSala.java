@@ -9,7 +9,7 @@ import java.time.LocalTime;
 public class GestionSala {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private long id;
 
     private LocalTime hora;
     private LocalDate dia;
@@ -25,14 +25,13 @@ public class GestionSala {
     private Sala sala;
 
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
-
 
     public LocalTime getHora() {
         return hora;
