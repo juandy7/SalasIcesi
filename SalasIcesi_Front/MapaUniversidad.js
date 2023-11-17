@@ -1,4 +1,4 @@
-var EdificoId = ['E, M, B']  ; 
+var EdificoId = ['E', 'M', 'B'] ; 
 
 if (window.localStorage.getItem('user') === null) {
     window.location.href = "/registro.html";
