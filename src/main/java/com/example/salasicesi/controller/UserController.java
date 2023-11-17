@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @CrossOrigin(maxAge = 3600)
@@ -78,10 +75,6 @@ public class UserController {
     }
 
 
-
-
-
-
     @PostMapping("salasIcesi/reservas/sala")
     public ResponseEntity<?> reservarSala(@RequestBody GestionSalaDTO gestionSalaDTO) {
         var sala = repositorioSalas.findById(gestionSalaDTO.getIdSala());
@@ -115,7 +108,24 @@ public class UserController {
         return stringBuilder.toString();
     }
 
+    @GetMapping("salasIcesi/misReservas/{id}")
+    public ResponseEntity<?> misReservas(@PathVariable("id") long id){
+        var usuario = repositorioUsuario.findById(id);
+        if (usuario.isPresent()){
+            var misReservas = repositorioGestionSala.verMisReservas(id);
+            ArrayList<MisReservasDTO> misReservasDTO = new ArrayList<>();
+            for (int i = 0; i < misReservas.size(); i++) {
+                MisReservasDTO sala = new MisReservasDTO(misReservas.get(i).getHora(),
+                        misReservas.get(i).getDia(),
+                        misReservas.get(i).getSala().getNumSala(),
+                        misReservas.get(i).getToken()
+                        );
+                misReservasDTO.add(sala);
+            }
 
-
+            return ResponseEntity.status(200).body(misReservasDTO);
+        }
+        return ResponseEntity.status(403).body("No se encontraron salas ligadas a este usuario");
+    }
 
 }
