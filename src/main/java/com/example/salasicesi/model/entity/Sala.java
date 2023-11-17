@@ -11,13 +11,9 @@ public class Sala {
     private long id;
 
     private String numSala;
-    private String token;
     private String capacidad;
     private boolean estado;
     private String recursos;
-
-    @ManyToOne
-    private Usuario usuario;
 
     @OneToMany(mappedBy = "sala")
     private List<GestionSala> gestionesSala;
@@ -41,13 +37,6 @@ public class Sala {
         this.gestionesSala = gestionesSala;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 
     public String getNumSala() {
         return numSala;
@@ -57,13 +46,6 @@ public class Sala {
         this.numSala = numSala;
     }
 
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
 
     public String getCapacidad() {
         return capacidad;
@@ -88,4 +70,5 @@ public class Sala {
     public void setRecursos(String recursos) {
         this.recursos = recursos;
     }
+
 }

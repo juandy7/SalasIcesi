@@ -3,15 +3,15 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 public class GestionSala {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
-    private LocalDateTime horaInicio;
-    private LocalDateTime horaFin;
+    private LocalTime hora;
     private LocalDate dia;
     private String token;
     private boolean estado;
@@ -24,20 +24,21 @@ public class GestionSala {
     @JoinColumn(name = "id_sala")
     private Sala sala;
 
-    public LocalDateTime getHoraInicio() {
-        return horaInicio;
+
+    public long getId() {
+        return id;
     }
 
-    public void setHoraInicio(LocalDateTime horaInicio) {
-        this.horaInicio = horaInicio;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public LocalDateTime getHoraFin() {
-        return horaFin;
+    public LocalTime getHora() {
+        return hora;
     }
 
-    public void setHoraFin(LocalDateTime horaFin) {
-        this.horaFin = horaFin;
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
     }
 
     public LocalDate getDia() {
