@@ -9,37 +9,40 @@
     <style>
         body {
             margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             height: 93.4vh;
             font-family: Khmer;
             border: 20px solid #6A67FF;
-            background-size: cover;
             background:url("Imagenes/NoReservas.png");
             background-repeat: no-repeat; 
             background-size: contain;
-            position: relative;
         
         }
 
         .texto-centrado {
-            text-align: center;
-            justify-content: center;
-            align-items: center;
+
             width: 100%;
             height: 100%;
-            border-color: #6A67FF;
-            border-style: dashed;
+
+            display: flex;
+            
+            align-items: center;
+            justify-content: center;
     
+        }.esquina-inferior-derecha {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            margin: 40px; 
         }
+        
     </style>
 </head>
 <body>
     <div class="texto-centrado">
-        <h1 >No Has Hecho ninguna Reserva</h1>
-        <a style="color:black;justify-self: center;align-self: center;" href="MapaUniversidad.html">Hacer Una Reserva</a>
-        <p><a style="top: 100%; float: right;"  href="MenuPrincipal.html"><img src = "Imagenes/back.png" ></a></p>
-
+            <h1 >Aún No Has Hecho ninguna Reserva</h1>
+            <br><div class = "esquina-inferior-derecha"></br>
+            <p><a style="float: right; ;"  href="MenuPrincipal.html"><img src = "Imagenes/back.png" ></a></p>
+            </div>
+        </div>
 </body>
 </html>
