@@ -5,81 +5,239 @@
     <link rel="icon" type="image/png" href="Imagenes/logo.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="...">
-    <link rel="stylesheet" href="estilos.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="Modal.css">
+
     <title>Mapa Universidad</title>
 
-
     <style>
+        .mapa{
 
-        header{
-
-            display:flex;
-            justify-content:center ;
             text-align: center;
-            height: 70px;
-            background-color: #AC55E1;
-
+            height: auto;
+            width: auto;    
+            
         }
+        header{
         
+          display:flex;
+          text-align: center;
+          height: 70px;
+          background-color: #AC55E1;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);   
+          color:white;
+          justify-content: calc();
+          font-weight: 400;
+
+          
+          }.informacion{
+
+            background-color: #AC55E1 ;
+          
+          }.btn-lg{
+
+            background-color: #6A67FF;
+            border-color: #6A67FF;
+
+          }
+    
     </style>
 
 
 </head>
 
-
-
-    
-
 <body>
 
-    <header style="align-items: center; position: relative;">
-        <h3>Elige un Edificio</h3>
+    <header style="align-items: center; position: relative; width: 100%; ">
+        <h1 style="font-size: 25px; justify-content: center; position: relative;margin:10px;">Elige Un Lugar A Gestionar</h1>
+        <div class="dropdown">
+          <img style="width: 70px; position: fixed; top: 0; right: 0;" src="Imagenes/Exit.png" data-bs-toggle="dropdown" aria-expanded="true">
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="Registro.html">Cerrar Sesión</a></li>
+          </ul>
+        </div>
+
     </header>
+ 
     <p></p>
 
 
 
 
     <div class=mapa>
-        <img style="width:fit-content;height:600px" src="Imagenes/MapaU.png" alt="mapa" usemap="#MapaUniversidad">
+        <img style="width:fit-content; height:500px;" src="Imagenes/MapaU.png" alt="mapa" usemap="#MapaUniversidad">
         <map id="MapaUniversidad">
-            <area shape="rect" coords="72, 375, 252, 691" href=""><!--Edificio M-->
-            <area shape="rect" coords="186 , 320, 536, 553" href=""> <!--Edificio B-->
-            <area shape="rect" coords="492, 35, 982, 175" href=""><!--Edificio L-->
-            <area shape="rect" coords="642, 463, 772, 700" href=""><!--Edificio C-->
-            <area shape="rect" coords="1026, 165, 1247, 324" href=""><!--Edificio H-->
-            <area shape="circle" coords="117, 117, 249" href=""><!--Auditorios-->
-            <area shape="rect" coords="840, 366, 963, 662" href=""><!--Edificio D-->
-            <area shape="rect" coords="1072, 536, 1220, 743" href=""><!--Edificio E-->
+            <area shape="rect" coords="55, 290, 200, 525" data-bs-toggle="modal" data-bs-target="#modalM" ><!--Edificio M-->
+            <area shape="rect" coords="250 , 210, 370, 400" data-bs-toggle="modal" data-bs-target="#modalB" > <!--Edificio B-->
+            <area shape="rect" coords="320, 20, 650, 120" data-bs-toggle="modal" data-bs-target="#modalL" ><!--Edificio L-->
+            <area shape="rect" coords="400, 300, 500, 500" href=""><!--Edificio C-->
+            <area shape="rect" coords="670, 100, 1010, 250" href=""><!--Edificio H-->
+            <area shape="circle" coords="80, 80, 80" href=""><!--Auditorios-->
+            <area shape="rect" coords="520, 220, 620, 450" data-bs-toggle="modal" data-bs-target="#modalD"><!--Edificio D-->
+            <area shape="rect" coords="670, 350, 1010, 500" data-bs-toggle="modal" data-bs-target="#modalE"><!--Edificio E--> 
         </map>
 
     </div>
 
-    <a href="AdminPrincipal.html"><img src="Imagenes/BackAdmin.png"></a>
+
+    <!--Edificio M--> 
+    <div class="modal fade" id="modalM" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+        <div class = "foto">
+            <b><h1>Edificio M</h1></b>
+            <p></p>
+            <div class="text-center">
+                <img style="width: 90%; "src="Imagenes/EdificioM.jpg" class="rounded" alt="...">
+              </div>
+
+        </div>
+
+        <div  class = "informacion">
+            <div class = "contenedor">
+
+                <a href="" type="button" class="btn btn-primary btn-lg">Planta 1</a>
+                <a href="" type="button" class="btn btn-primary btn-lg">Planta 2</a>
+                <a href="" type="button" class="btn btn-primary btn-lg">Planta 3</a>
+                <a href="" type="button" class="btn btn-primary btn-lg">Planta 4</a>
+            
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <!--Edificio L-->
+        <div class="modal fade" id="modalL" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    
+        <div class = "foto">
+            <b><h1>Edificio L</h1></b>
+            <p></p>
+            <div class="text-center">
+                <img style="width: 90%; "src="Imagenes/EdificioL.jpg" class="rounded" alt="...">
+              </div>
+    
+        </div>
+    
+        <div  class = "informacion">
+            <div class = "contenedor">
+    
+                <a href="" type="button" class="btn btn-primary btn-lg">Planta 1</a>
+                <a href="" type="button" class="btn btn-primary btn-lg">Planta 2</a>
+                <a href="" type="button" class="btn btn-primary btn-lg">Planta 3</a>
+                <a href="" type="button" class="btn btn-primary btn-lg">Planta 4</a>
+                <a href="" type="button" class="btn btn-primary btn-lg">Planta 5</a>
+            
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
+          <!--Edificio B-->
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+
+          <div class="modal fade" id="modalB" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class = "foto">
+                        <b><h1>Edificio B</h1></b>
+                        <p></p>
+                        <div class="text-center">
+                            <img style="width: 90%; "src="Imagenes/Biblio.jpg" class="rounded" alt="...">
+                          </div>
+                
+                    </div>
+                
+                    <div  class = "informacion">
+                        <div class = "contenedor">
+
+                            <a href="EdificioB_piso1.html" type="button" class="btn btn-primary btn-lg">Planta 1</a>
+                            <a href="EdificioB_piso2.html" type="button" class="btn btn-primary btn-lg">Planta 2</a>
+                            <a href="EdifcioB_piso3.html" type="button" class="btn btn-primary btn-lg">Planta 3</a>
+                        
+                        </div>
+                    </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Edificio E-->
+
+          <div class="modal fade" id="modalE" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    
+        <div class = "foto">
+            <b><h1>Edificio E</h1></b>
+            <p></p>
+            <div class="text-center">
+                <img style="width: 70%; "src="Imagenes/EdificioE.jpg" class="rounded" alt="...">
+              </div>
+    
+        </div>
+    
+        <div  class = "informacion">
+            <div class = "contenedor">
+    
+                <a href="EdificioE_piso1_admin.html" type="button" class="btn btn-primary btn-lg">Planta 1</a>
+                <a href="" type="button" class="btn btn-primary btn-lg">Planta 2</a>
+                <a href="" type="button" class="btn btn-primary btn-lg">Planta 3</a>
+                <a href="" type="button" class="btn btn-primary btn-lg">Planta 4</a>
+                <a href="" type="button" class="btn btn-primary btn-lg">Planta 5</a>
+            
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+        <!--Edificio D--> 
+ <div class="modal fade" id="modalD" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-         
-    <div class = "foto">
-      <a style="align-self: flex-start; justify-self: flex-start;position: absolute ; top:0 ; margin: 10px;" href="MenuPrincipal.html"><img src="Imagenes/Back.png"></a>
-      <b><h1>Edificio M</h1></b>
+           
+  <div class = "foto">
+      <b><h1>Edificio D</h1></b>
       <p></p>
       <div class="text-center">
-          <img style="width: 90%; "src="Imagenes/EdificioM.jpg" class="rounded" alt="...">
+          <img style="width: 70%; "class="rounded" src="Imagenes/EdificioD.jpg">
         </div>
 
   </div>
@@ -91,21 +249,40 @@
           <a href="" type="button" class="btn btn-primary btn-lg">Planta 2</a>
           <a href="" type="button" class="btn btn-primary btn-lg">Planta 3</a>
           <a href="" type="button" class="btn btn-primary btn-lg">Planta 4</a>
-          <a href="" type="button" class="btn btn-primary btn-lg">Planta 5</a>
       
-      </div>
-  </div>
-  
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="..."></script>
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+    
+
+
+    <a href="AdminPrincipal.html"><img src="Imagenes/BackAdmin.png"></a>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
 
 
 </body>

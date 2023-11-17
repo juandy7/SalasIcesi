@@ -62,6 +62,24 @@ public class UserController {
         }
     }
 
+    @GetMapping("salasIcesi/informacion/{sala}")
+    public ResponseEntity<?> listInfo (@RequestHeader("Authorization") String authorization, @PathVariable("sala") String sala) {
+        try {
+            var salaInfo = repositorioSalas.findClassByNum(sala).get(0);
+            if (salaInfo != null) {
+                return ResponseEntity.status(200).body(salaInfo);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(404).body("Sala not found  ");
+        }
+        return ResponseEntity.status(403).body("You do not have authorization");
+
+
+    }
+
+
+
+
 
 
     @PostMapping("salasIcesi/reservas/sala")
