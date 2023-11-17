@@ -55,20 +55,4 @@ public class UserController {
         }
     }
 
-    @GetMapping("salasIcesi/disponibilidad/{sala}{dia}")
-    public ResponseEntity<?>disponibilidadSala(@RequestParam("sala") long aute,
-                                               @RequestParam("dia") LocalDate dia){
-        var sala = repositorioSalas.findById(aute);
-        if (sala.isPresent()){
-            var disponibilidadSala = repositorioSalas.findDisponibilidadSala(dia);
-            if (disponibilidadSala.get(){
-                return ResponseEntity.status(200).body("Sala disponible");
-            }else
-                return ResponseEntity.status(405).body("Sala ocupada");
-        }
-        else
-            return ResponseEntity.status(403).body("Error al buscar disponibilidad de sala");
-    }
-
-
 }
