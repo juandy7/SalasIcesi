@@ -9,6 +9,8 @@
 
     <style>
         body{
+
+
             background: url(Imagenes/EdificioE_2.jpg);
             background-size: cover;
             align-items: left;
@@ -18,14 +20,16 @@
 
 
         }
-        .container{
+        .salaCardContainer{
+
           width: 45%;
           height: 100vh;
           float: left ;
-          background-color: rgba(255, 255, 255, 0.671); /* Rojo con 70% de transparencia */
+          background-color: rgba(255, 255, 255, 0.671);
           text-align: center;
           justify-content: center;  
-          display: flex;
+          display:flex;
+
         }.text-center{
 
           justify-content: center;
@@ -45,8 +49,6 @@
           border-color: black;
 
 
-          
-
         }.btn-lg:hover{
 
           background-color: black;
@@ -60,24 +62,26 @@
 
 </head>
 <body>
-
-  <div class = container>
+  <div class = salaCardContainer id = "salaCardContainer">
    
 
-    <div class="container text-center">
+    <!--
+      <div class="container text-center">
       <div class="row g-2">
         <div class="col-6">
-          <button type="button" class="btn btn-primary btn-lg">101E1</button>
+          <button type="button" class="btn btn-primary btn-lg" id = "salones">101E1</button>
         </div>
       </div>
-    </div>
-        
+    </div>  
+  -->
    
-    <a href="MapaUniversidad.html"><img src="Imagenes/back.png">
-      <script src= "SalaCard.js"> </script>
-      <script src= "SalaPorEdificio.js"> </script>
+   
 
-    </div>
+  </div>
+      <a href="MapaUniversidad.html"><img src="Imagenes/back.png">
+        <script src= "SalaCard.js"> </script>
+        <script src= "SalaPorEdificio.js"> </script>
+
 
 
 
