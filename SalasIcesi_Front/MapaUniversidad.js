@@ -1,4 +1,4 @@
-var salonIds = ['salon1', 'salon2', 'salon3', 'salon4', 'salon5', 'salon6', 'salon7', 'salon8', 'salon9', 'salon10'];
+var EdificoId = ['E, M, B']  ; 
 
 if (window.localStorage.getItem('user') === null) {
     window.location.href = "/registro.html";
@@ -9,11 +9,11 @@ if (window.localStorage.getItem('user') === null) {
 function manejarClicSalon(event) {
     event.preventDefault();
     var salonSeleccionado = event.target.innerHTML;
-    window.localStorage.setItem("sala", salonSeleccionado);
-    window.location.href = "/SalasIcesi/SalasIcesi_Front/HorarioDisponible.html";
+    window.localStorage.setItem("Edificio", salonSeleccionado);
+    window.location.href = "/SalasIcesi/SalasIcesi_Front/EdificioE_piso1.html";
 }
 
-salonIds.forEach(function (salonId) {
+EdificoId.forEach(function (salonId) {
     var salonElemento = document.getElementById(salonId);
     salonElemento.addEventListener('click', manejarClicSalon);
 });

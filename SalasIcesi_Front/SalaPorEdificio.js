@@ -19,8 +19,8 @@ console.log(user);
 
 async function getSalas(){
     
-    let sala = window.localStorage.getItem('sala');
-    let response = await fetch('http://127.0.0.1:8080/Salasicesi/salones/E',{
+    let edificio = window.localStorage.getItem('Edificio');
+    let response = await fetch('http://127.0.0.1:8080/Salasicesi/salones/'+ edificio,{
         method: 'GET',
         headers: {
             'Authorization': '123'
