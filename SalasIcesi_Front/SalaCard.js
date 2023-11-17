@@ -20,7 +20,7 @@ class SalaCard {
         button.type = 'button';
         button.className = 'btn btn-primary btn-lg';
         button.innerText = this.sala.numSala;
-        
+            
         col.appendChild(button);
         row.appendChild(col);
         container.appendChild(row);
