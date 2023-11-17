@@ -1,10 +1,12 @@
 package com.example.salasicesi.controller;
 
 
+import com.example.salasicesi.model.Repositorio.RepositorioGestionSala;
 import com.example.salasicesi.model.Repositorio.RepositorioUsuario;
 import com.example.salasicesi.model.Repositorio.RepositorioSalas;
 import com.example.salasicesi.model.dto.*;
 import com.example.salasicesi.model.entity.Categoria;
+import com.example.salasicesi.model.entity.GestionSala;
 import com.example.salasicesi.model.entity.Sala;
 import com.example.salasicesi.model.entity.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalTime;
+import java.util.*;
 
 @RestController
 @CrossOrigin(maxAge = 3600)
@@ -25,6 +27,9 @@ public class UserController {
 
     @Autowired
     private RepositorioSalas repositorioSalas;
+
+    @Autowired
+    private RepositorioGestionSala repositorioGestionSala;
 
     //Loguin del usuario
     @PostMapping("salasIcesi/login")
@@ -53,6 +58,77 @@ public class UserController {
         }else {
             return ResponseEntity.status(403).body("No tiene acceso permitido");
         }
+    }
+
+    @GetMapping("salasIcesi/informacion/{sala}")
+    public ResponseEntity<?> listInfo (@RequestHeader("Authorization") String authorization, @PathVariable("sala") String sala) {
+        try {
+            var salaInfo = repositorioSalas.findClassByNum(sala).get(0);
+            if (salaInfo != null) {
+                return ResponseEntity.status(200).body(salaInfo);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(404).body("Sala not found  ");
+        }
+        return ResponseEntity.status(403).body("You do not have authorization");
+
+
+    }
+
+    @GetMapping("salasIcesi/{sala}/{dia}")
+    public ResponseEntity<?> disponibilidadSala(@PathVariable("sala") String numSala, @PathVariable("dia") LocalDate dia){
+        try {
+            var sala = repositorioSalas.findClassByNum(numSala).get(0);
+            if (sala!= null) {
+                var disponibilidadSala = repositorioGestionSala.disponibilidad(sala,dia);
+                ArrayList<LocalTime> horasReservadas = new ArrayList<>();
+                for (int i = 0; i < disponibilidadSala.size(); i++) {
+                    LocalTime hora = disponibilidadSala.get(i).getHora();
+                    horasReservadas.add(hora);
+                }
+                return ResponseEntity.status(200).body(horasReservadas.toString());
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(404).body("Sala no encontrada");
+        }
+        return ResponseEntity.status(403).body("Sala disponible");
+
+    }
+
+
+
+
+    @PostMapping("salasIcesi/reservas/sala")
+    public ResponseEntity<?> reservarSala(@RequestBody GestionSalaDTO gestionSalaDTO) {
+        var sala = repositorioSalas.findById(gestionSalaDTO.getIdSala());
+        var usuario = repositorioUsuario.findById(gestionSalaDTO.getIdUsuario());
+        if (sala.isPresent() && usuario.isPresent()) {
+            List<GestionSala> salasReservadas = repositorioGestionSala.verificacionEstadoSala(gestionSalaDTO.getDia(),gestionSalaDTO.getHora());
+            if (salasReservadas.isEmpty()) {
+                GestionSala nuevaReserva = new GestionSala();
+                nuevaReserva.setHora(gestionSalaDTO.getHora());
+                nuevaReserva.setEstado(true);
+                nuevaReserva.setToken(generateRandomToken());
+                nuevaReserva.setDia(gestionSalaDTO.getDia());
+                nuevaReserva.setSala(sala.get());
+                nuevaReserva.setUsuario(usuario.get());
+                repositorioGestionSala.save(nuevaReserva);
+                return ResponseEntity.status(200).body("Sala reservada exitosamente");
+            } else {
+                return ResponseEntity.status(403).body("No se pudo realizar la solicitud. La sala ya está reservada a esa hora.");
+            }
+        } else {
+            return ResponseEntity.status(403).body("No se pudo realizar la solicitud");
+        }
+    }
+
+    private String generateRandomToken() {
+        Random random = new Random();
+        StringBuilder stringBuilder = new StringBuilder(4);
+        for (int i = 0; i < 4; i++) {
+            stringBuilder.append(random.nextInt(10));
+        }
+        return stringBuilder.toString();
     }
 
 }
