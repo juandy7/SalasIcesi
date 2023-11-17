@@ -16,4 +16,7 @@ public interface RepositorioGestionSala extends CrudRepository<GestionSala,Long>
 
     @Query("SELECT s FROM GestionSala s WHERE s.dia =:dia AND s.hora =:hora")
     List<GestionSala> verificacionEstadoSala(LocalDate dia, LocalTime hora);
+
+    @Query("SELECT s FROM GestionSala s WHERE s.sala =:sala AND s.dia =:dia")
+    List<GestionSala> disponibilidad(Sala sala, LocalDate dia);
 }
