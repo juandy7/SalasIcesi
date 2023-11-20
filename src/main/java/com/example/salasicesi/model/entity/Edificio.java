@@ -1,4 +1,5 @@
 package com.example.salasicesi.model.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 
