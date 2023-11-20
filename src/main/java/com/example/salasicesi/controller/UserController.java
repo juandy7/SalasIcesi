@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 import java.util.*;
 
 @RestController
@@ -74,6 +76,24 @@ public class UserController {
 
 
     }
+
+    @GetMapping("salasIcesi/{sala}/{dia}")
+    public ResponseEntity<?> disponibilidadSala(@PathVariable("sala") String numSala, @PathVariable("dia") LocalDate dia){
+        try {
+            var sala = repositorioSalas.findClassByNum(numSala).get(0);
+            if (sala!= null) {
+                var disponibilidadSala = repositorioGestionSala.disponibilidad(sala,dia);
+                ArrayList<LocalTime> horasReservadas = new ArrayList<>();
+                for (int i = 0; i < disponibilidadSala.size(); i++) {
+                    LocalTime hora = disponibilidadSala.get(i).getHora();
+                    horasReservadas.add(hora);
+                }
+                return ResponseEntity.status(200).body(horasReservadas.toString());
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(404).body("Sala no encontrada");
+        }
+        return ResponseEntity.status(403).body("Sala disponible");
 
 
     @PostMapping("salasIcesi/reservas/sala")
