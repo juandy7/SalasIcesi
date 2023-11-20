@@ -9,7 +9,6 @@ import com.example.salasicesi.model.entity.Categoria;
 import com.example.salasicesi.model.entity.GestionSala;
 import com.example.salasicesi.model.entity.Sala;
 import com.example.salasicesi.model.entity.Usuario;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
