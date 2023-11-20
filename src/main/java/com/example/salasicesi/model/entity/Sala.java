@@ -17,10 +17,12 @@ public class Sala {
     private String recursos;
 
     @OneToMany(mappedBy = "sala")
+    @JsonIgnore
     private List<GestionSala> gestionesSala;
 
 
     @OneToMany(mappedBy = "sala")
+    @JsonIgnore
     private List<SalasPorEdificio> salasPorEdificio;
 
     public List<SalasPorEdificio> getSalasPorEdificio() {

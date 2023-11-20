@@ -1,5 +1,6 @@
 package com.example.salasicesi.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +14,7 @@ public class SalasPorEdificio {
     private Edificio edificio;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "sala_id")
     private Sala sala;
 
