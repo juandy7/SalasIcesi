@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+
 import java.util.*;
 
 @RestController
@@ -128,5 +129,49 @@ public class UserController {
         }
         return stringBuilder.toString();
     }
+
+
+    @GetMapping("salasIcesi/misReservas/{id}")
+    public ResponseEntity<?> misReservas(@PathVariable("id") long id){
+        var usuario = repositorioUsuario.findById(id);
+        if (usuario.isPresent()){
+            var misReservas = repositorioGestionSala.verMisReservas(id);
+            ArrayList<MisReservasDTO> misReservasDTO = new ArrayList<>();
+            for (int i = 0; i < misReservas.size(); i++) {
+                MisReservasDTO sala = new MisReservasDTO(misReservas.get(i).getHora(),
+                        misReservas.get(i).getDia(),
+                        misReservas.get(i).getSala().getNumSala(),
+                        misReservas.get(i).getToken()
+                        );
+                misReservasDTO.add(sala);
+            }
+
+            return ResponseEntity.status(200).body(misReservasDTO);
+        }
+        return ResponseEntity.status(403).body("No se encontraron salas ligadas a este usuario");
+    }
+
+    @GetMapping("Salasicesi/salones/{edificio}")
+    //Recibo un header que es la letra del Edificio
+    public ResponseEntity<?>listSalones(@PathVariable("edificio") String edificio){
+        //Tengo una variable "edificioXsalon" que en busca el edificioId(Nombre del edificio) del edificio que me mandaron por el header
+        var edificioXsalon = repositorioSalas.findEdificio(edificio);
+        //En caso de que ecuentre un edificio (String) entonces se hace un if
+        if (!edificioXsalon.isEmpty()){
+            //Si hay algun edificio con ese nombre entonces toma el ID de ese edificio de la base de datos y como solo hay uno, toma el de la primera posicion
+
+            var edificioEncontrado = edificioXsalon.get(0);
+
+            //Una vez encontrado el ID del edificio se ve que salones estan asociados a este edificio
+            var salones = repositorioSalas.findByEdificio(edificioEncontrado.getId());
+            ;
+            //PENDIENTE: Retornar en una lista(me imagino) de cada salon asociado al edificio
+            return ResponseEntity.status(200).body(salones);
+        }else {
+            return ResponseEntity.status(404).body("Edificio no encontrado");
+        }
+
+    }
+
 
 }
