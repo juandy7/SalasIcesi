@@ -78,10 +78,6 @@ public class UserController {
     }
 
 
-
-
-
-
     @PostMapping("salasIcesi/reservas/sala")
     public ResponseEntity<?> reservarSala(@RequestBody GestionSalaDTO gestionSalaDTO) {
         var sala = repositorioSalas.findById(gestionSalaDTO.getIdSala());
@@ -115,7 +111,26 @@ public class UserController {
         return stringBuilder.toString();
     }
 
+    @GetMapping("Salasicesi/salones/{edificio}")
+    //Recibo un header que es la letra del Edificio
+    public ResponseEntity<?>listSalones(@PathVariable("edificio") String edificio){
+        //Tengo una variable "edificioXsalon" que en busca el edificioId(Nombre del edificio) del edificio que me mandaron por el header
+        var edificioXsalon = repositorioSalas.findEdificio(edificio);
+        //En caso de que ecuentre un edificio (String) entonces se hace un if
+        if (!edificioXsalon.isEmpty()){
+            //Si hay algun edificio con ese nombre entonces toma el ID de ese edificio de la base de datos y como solo hay uno, toma el de la primera posicion
 
+            var edificioEncontrado = edificioXsalon.get(0);
 
+            //Una vez encontrado el ID del edificio se ve que salones estan asociados a este edificio
+            var salones = repositorioSalas.findByEdificio(edificioEncontrado.getId());
+            ;
+            //PENDIENTE: Retornar en una lista(me imagino) de cada salon asociado al edificio
+            return ResponseEntity.status(200).body(salones);
+        }else {
+            return ResponseEntity.status(404).body("Edificio no encontrado");
+        }
+
+    }
 
 }

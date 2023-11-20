@@ -15,6 +15,14 @@ public class Edificio {
     @OneToMany(mappedBy = "edificio")
     private List<SalasPorEdificio> salasPorEdificio;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public List<SalasPorEdificio> getSalasPorEdificio() {
         return salasPorEdificio;
     }
