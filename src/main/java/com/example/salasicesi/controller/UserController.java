@@ -118,4 +118,41 @@ public class UserController {
 
 
 
+
+    @PostMapping("salasIcesi/reservas/sala")
+    public ResponseEntity<?> reservarSala(@RequestBody GestionSalaDTO gestionSalaDTO) {
+        var sala = repositorioSalas.findById(gestionSalaDTO.getIdSala());
+        var usuario = repositorioUsuario.findById(gestionSalaDTO.getIdUsuario());
+        if (sala.isPresent() && usuario.isPresent()) {
+            List<GestionSala> salasReservadas = repositorioGestionSala.verificacionEstadoSala(gestionSalaDTO.getDia(),gestionSalaDTO.getHora());
+            if (salasReservadas.isEmpty()) {
+                GestionSala nuevaReserva = new GestionSala();
+                nuevaReserva.setHora(gestionSalaDTO.getHora());
+                nuevaReserva.setEstado(true);
+                nuevaReserva.setToken(generateRandomToken());
+                nuevaReserva.setDia(gestionSalaDTO.getDia());
+                nuevaReserva.setSala(sala.get());
+                nuevaReserva.setUsuario(usuario.get());
+                repositorioGestionSala.save(nuevaReserva);
+                return ResponseEntity.status(200).body("Sala reservada exitosamente");
+            } else {
+                return ResponseEntity.status(403).body("No se pudo realizar la solicitud. La sala ya está reservada a esa hora.");
+            }
+        } else {
+            return ResponseEntity.status(403).body("No se pudo realizar la solicitud");
+        }
+    }
+
+    private String generateRandomToken() {
+        Random random = new Random();
+        StringBuilder stringBuilder = new StringBuilder(4);
+        for (int i = 0; i < 4; i++) {
+            stringBuilder.append(random.nextInt(10));
+        }
+        return stringBuilder.toString();
+    }
+
+
+
+
 }
