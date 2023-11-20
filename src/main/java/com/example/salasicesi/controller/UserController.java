@@ -9,6 +9,7 @@ import com.example.salasicesi.model.entity.Categoria;
 import com.example.salasicesi.model.entity.GestionSala;
 import com.example.salasicesi.model.entity.Sala;
 import com.example.salasicesi.model.entity.Usuario;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -93,10 +94,6 @@ public class UserController {
         }
         return ResponseEntity.status(403).body("Sala disponible");
 
-    }
-
-
-
 
     @PostMapping("salasIcesi/reservas/sala")
     public ResponseEntity<?> reservarSala(@RequestBody GestionSalaDTO gestionSalaDTO) {
@@ -122,7 +119,8 @@ public class UserController {
         }
     }
 
-    private String generateRandomToken() {
+
+    private String generateRandomToken(){
         Random random = new Random();
         StringBuilder stringBuilder = new StringBuilder(4);
         for (int i = 0; i < 4; i++) {
