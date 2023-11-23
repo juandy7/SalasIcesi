@@ -3,6 +3,7 @@ import com.example.salasicesi.model.entity.Categoria;
 
 public class UsuarioDTO{
 
+    private long id;
     private String nombre;
     private String email;
     private String contrasenha;
@@ -12,9 +13,11 @@ public class UsuarioDTO{
     //ToDo: Hacer Getters y Setters
 
 
+    public UsuarioDTO() {
+    }
 
-    public UsuarioDTO(String nombre, String email, String contrasenha, String codigo, Categoria categoria) {
-
+    public UsuarioDTO(long id, String nombre, String email, String contrasenha, String codigo, Categoria categoria) {
+        this.id = id;
         this.nombre = nombre;
         this.email = email;
         this.contrasenha = contrasenha;
@@ -22,6 +25,13 @@ public class UsuarioDTO{
         this.categoria = categoria;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;

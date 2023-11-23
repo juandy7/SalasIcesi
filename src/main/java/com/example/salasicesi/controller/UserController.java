@@ -39,7 +39,7 @@ public class UserController {
 
         if (!usuarios.isEmpty()) {
             Usuario firstUser = usuarios.get(0);
-            UsuarioDTO userReturn = new UsuarioDTO(firstUser.getNombre(), firstUser.getEmail()
+            UsuarioDTO userReturn = new UsuarioDTO(firstUser.getId(),firstUser.getNombre(), firstUser.getEmail()
                     , firstUser.getContrasenha(), firstUser.getCodigo(), firstUser.getCategoria());
             return ResponseEntity.status(200).body(userReturn);
 

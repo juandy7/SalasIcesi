@@ -14,10 +14,6 @@ import java.util.List;
 @Repository
 public interface RepositorioSalas extends CrudRepository<Sala,Long> {
 
-
-    @Query("SELECT s FROM GestionSala s WHERE s.dia=:dia")
-    List<Sala> disponibilidad(LocalDate dia);
-
     //En esta QUERY se recibe el id de edificio y en la tabla de SalasPorEdificio se busca los salones asociados a este
     @Query("SELECT s FROM SalasPorEdificio sp INNER JOIN sp.sala s WHERE sp.edificio.id =:id")
     public List<Sala> findByEdificio(long id);
