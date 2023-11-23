@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class MisReservasDTO {
+    private long id;
     private LocalTime hora;
     private LocalDate dia;
     private String numSala;
@@ -12,11 +13,20 @@ public class MisReservasDTO {
     public MisReservasDTO() {
     }
 
-    public MisReservasDTO(LocalTime hora, LocalDate dia, String numSala, String token) {
+    public MisReservasDTO(long id, LocalTime hora, LocalDate dia, String numSala, String token) {
+        this.id = id;
         this.hora = hora;
         this.dia = dia;
         this.numSala = numSala;
         this.token = token;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public LocalTime getHora() {
