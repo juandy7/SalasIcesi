@@ -16,6 +16,7 @@ public class Sala {
     private boolean estado;
     private String recursos;
 
+
     @OneToMany(mappedBy = "sala")
     @JsonIgnore
     private List<GestionSala> gestionesSala;
@@ -24,6 +25,14 @@ public class Sala {
     @OneToMany(mappedBy = "sala")
     @JsonIgnore
     private List<SalasPorEdificio> salasPorEdificio;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public List<SalasPorEdificio> getSalasPorEdificio() {
         return salasPorEdificio;

@@ -5,7 +5,7 @@ import java.time.LocalTime;
 
 public class GestionSalaDTO {
 
-    private LocalTime hora;
+        private LocalTime hora;
     private LocalDate dia;
     private long idUsuario;
     private long idSala;
