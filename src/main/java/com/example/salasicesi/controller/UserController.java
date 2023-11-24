@@ -32,7 +32,7 @@ public class UserController {
     @Autowired
     private RepositorioGestionSala repositorioGestionSala;
 
-    //Loguin del usuario
+    //Login del usuario
     @PostMapping("salasIcesi/login")
     public ResponseEntity<?> login(@RequestBody LoginUsuarioDTO user) {
         var usuarios = repositorioUsuario.findUserByEmailAndPassword(user.getEmail(), user.getContrasenha());
