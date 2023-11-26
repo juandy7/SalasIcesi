@@ -182,10 +182,10 @@ public class UserController {
         return ResponseEntity.status(403).body("Ocurrio un problema al eliminar la sala");
     }
 
-    @PostMapping("salasIcesi/administrador/reservas/sala/{correoUsuario}")
-    public ResponseEntity<?> reservarSalaAdministrador (@RequestBody GestionSalaDTO gestionSalaDTO, @PathVariable("correoUsuario") String correo){
+    @PostMapping("salasIcesi/administrador/reservas/sala")
+    public ResponseEntity<?> reservarSalaAdministrador (@RequestBody GestionSalaDTO gestionSalaDTO){
         var sala = repositorioSalas.findById(gestionSalaDTO.getIdSala());
-        var usuario = repositorioUsuario.findUserByEmail(correo);
+        var usuario = repositorioUsuario.findUserByEmail(gestionSalaDTO.getCorreoUsuario());
         if (sala.isPresent() && !usuario.isEmpty()) {
             List<GestionSala> salasReservadas = repositorioGestionSala.verificacionEstadoSala(gestionSalaDTO.getDia(), gestionSalaDTO.getHora());
             if (salasReservadas.isEmpty()) {

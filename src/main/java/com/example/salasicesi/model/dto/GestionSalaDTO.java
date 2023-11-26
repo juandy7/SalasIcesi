@@ -9,16 +9,25 @@ public class GestionSalaDTO {
     private LocalDate dia;
     private long idUsuario;
     private long idSala;
+    private String correoUsuario;
 
     public GestionSalaDTO() {
     }
 
-
-    public GestionSalaDTO(LocalTime hora, LocalDate dia, long idUsuario, long idSala) {
+    public GestionSalaDTO(LocalTime hora, LocalDate dia, long idUsuario, long idSala, String correoUsuario) {
         this.hora = hora;
         this.dia = dia;
         this.idUsuario = idUsuario;
         this.idSala = idSala;
+        this.correoUsuario = correoUsuario;
+    }
+
+    public String getCorreoUsuario() {
+        return correoUsuario;
+    }
+
+    public void setCorreoUsuario(String correoUsuario) {
+        this.correoUsuario = correoUsuario;
     }
 
     public LocalTime getHora() {
