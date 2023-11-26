@@ -114,7 +114,7 @@ public class UserController {
                     return ResponseEntity.status(403).body("No se pudo realizar la solicitud. La sala ya está reservada a esa hora.");
                 }
             } else {
-                return ResponseEntity.status(403).body("No se pudo realizar la solicitud");
+                return ResponseEntity.status(403).body("No se pudo realizar la solicitud, probablemente la sala esta inhabilitada");
             }
         }
 
