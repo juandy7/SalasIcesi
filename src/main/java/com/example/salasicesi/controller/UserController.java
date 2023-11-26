@@ -182,6 +182,29 @@ public class UserController {
         return ResponseEntity.status(403).body("Ocurrio un problema al eliminar la sala");
     }
 
+    @PostMapping("salasIcesi/administrador/reservas/sala")
+    public ResponseEntity<?> reservarSalaAdministrador (@RequestBody GestionSalaDTO gestionSalaDTO){
+        var sala = repositorioSalas.findById(gestionSalaDTO.getIdSala());
+        var usuario = repositorioUsuario.findUserByEmail(gestionSalaDTO.getCorreoUsuario());
+        if (sala.isPresent() && !usuario.isEmpty()) {
+            List<GestionSala> salasReservadas = repositorioGestionSala.verificacionEstadoSala(gestionSalaDTO.getDia(), gestionSalaDTO.getHora());
+            if (salasReservadas.isEmpty()) {
+                GestionSala nuevaReserva = new GestionSala();
+                nuevaReserva.setHora(gestionSalaDTO.getHora());
+                nuevaReserva.setEstado(true);
+                nuevaReserva.setToken(generateRandomToken());
+                nuevaReserva.setDia(gestionSalaDTO.getDia());
+                nuevaReserva.setSala(sala.get());
+                nuevaReserva.setUsuario(usuario.get(0));
+                repositorioGestionSala.save(nuevaReserva);
+                return ResponseEntity.status(200).body("Sala reservada exitosamente");
+            } else {
+                return ResponseEntity.status(403).body("No se pudo realizar la solicitud. La sala ya está reservada a esa hora.");
+            }
+        } else {
+            return ResponseEntity.status(403).body("No se pudo realizar la solicitud");
+        }
+
 
     @PutMapping("salasIcesi/administrador/inhabilitarSala/{salaID}")
     public ResponseEntity<?> inhabilitarSala(@PathVariable("salaID") long salaID){
@@ -202,6 +225,7 @@ public class UserController {
             return ResponseEntity.status(200).body("Sala habilitada exitosamente");
         }
         return ResponseEntity.status(403).body("Ocurrio un problema");
+
 
     }
 }

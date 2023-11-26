@@ -16,5 +16,7 @@ public interface RepositorioUsuario extends CrudRepository<Usuario,Long>{
     @Query("SELECT u FROM Usuario u WHERE u.email = :mail AND u.contrasenha =:password")
     List<Usuario> findUserByEmailAndPassword(String mail, String password);
 
+    @Query("SELECT u FROM Usuario u WHERE u.email = :mail ")
+    List<Usuario> findUserByEmail(String mail);
 
 }
