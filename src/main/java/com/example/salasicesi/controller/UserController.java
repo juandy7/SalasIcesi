@@ -181,4 +181,15 @@ public class UserController {
         }
         return ResponseEntity.status(403).body("Ocurrio un problema al eliminar la sala");
     }
+
+    @PutMapping("salasIcesi/administrador/habilitar/{salaID}")
+    public ResponseEntity<?> habilitarSala(@PathVariable("salaID") long salaID){
+        Optional<Sala> sala = repositorioSalas.findById(salaID);
+        if (sala.isPresent()){
+            sala.get().setEstado(false);
+            repositorioSalas.save(sala.get());
+            return ResponseEntity.status(200).body("Sala habilitada exitosamente");
+        }
+        return ResponseEntity.status(403).body("Ocurrio un problema");
+    }
 }
