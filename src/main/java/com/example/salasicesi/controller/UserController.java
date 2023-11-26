@@ -98,7 +98,7 @@ public class UserController {
         public ResponseEntity<?> reservarSala (@RequestBody GestionSalaDTO gestionSalaDTO){
             var sala = repositorioSalas.findById(gestionSalaDTO.getIdSala());
             var usuario = repositorioUsuario.findById(gestionSalaDTO.getIdUsuario());
-            if (sala.isPresent() && usuario.isPresent()) {
+            if (sala.isPresent() && usuario.isPresent() && sala.get().isEstado() == false) {
                 List<GestionSala> salasReservadas = repositorioGestionSala.verificacionEstadoSala(gestionSalaDTO.getDia(), gestionSalaDTO.getHora());
                 if (salasReservadas.isEmpty()) {
                     GestionSala nuevaReserva = new GestionSala();
@@ -114,7 +114,7 @@ public class UserController {
                     return ResponseEntity.status(403).body("No se pudo realizar la solicitud. La sala ya está reservada a esa hora.");
                 }
             } else {
-                return ResponseEntity.status(403).body("No se pudo realizar la solicitud");
+                return ResponseEntity.status(403).body("No se pudo realizar la solicitud, probablemente la sala esta inhabilitada");
             }
         }
 
@@ -204,5 +204,28 @@ public class UserController {
         } else {
             return ResponseEntity.status(403).body("No se pudo realizar la solicitud");
         }
+
+
+    @PutMapping("salasIcesi/administrador/inhabilitarSala/{salaID}")
+    public ResponseEntity<?> inhabilitarSala(@PathVariable("salaID") long salaID){
+        var sala = repositorioSalas.findById(salaID);
+        if (sala.isPresent()){
+            sala.get().setEstado(true);
+            repositorioSalas.save(sala.get());
+            return ResponseEntity.status(200).body("Sala inhabilitada exitosamente");
+        }
+        return ResponseEntity.status(403).body("Ocurrio un problema en la inhabilitacion");
+
+    @PutMapping("salasIcesi/administrador/habilitar/{salaID}")
+    public ResponseEntity<?> habilitarSala(@PathVariable("salaID") long salaID){
+        Optional<Sala> sala = repositorioSalas.findById(salaID);
+        if (sala.isPresent()){
+            sala.get().setEstado(false);
+            repositorioSalas.save(sala.get());
+            return ResponseEntity.status(200).body("Sala habilitada exitosamente");
+        }
+        return ResponseEntity.status(403).body("Ocurrio un problema");
+
+
     }
 }
