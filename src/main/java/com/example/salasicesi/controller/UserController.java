@@ -183,7 +183,7 @@ public class UserController {
     }
 
     @PostMapping("salasIcesi/administrador/reservas/sala")
-    public ResponseEntity<?> reservarSalaAdministrador (@RequestBody GestionSalaDTO gestionSalaDTO){
+    public ResponseEntity<?> reservarSalaAdministrador (@RequestBody GestionSalaDTO gestionSalaDTO) {
         var sala = repositorioSalas.findById(gestionSalaDTO.getIdSala());
         var usuario = repositorioUsuario.findUserByEmail(gestionSalaDTO.getCorreoUsuario());
         if (sala.isPresent() && !usuario.isEmpty()) {
@@ -204,17 +204,20 @@ public class UserController {
         } else {
             return ResponseEntity.status(403).body("No se pudo realizar la solicitud");
         }
+    }
 
 
     @PutMapping("salasIcesi/administrador/inhabilitarSala/{salaID}")
-    public ResponseEntity<?> inhabilitarSala(@PathVariable("salaID") long salaID){
+    public ResponseEntity<?> inhabilitarSala(@PathVariable("salaID") long salaID) {
         var sala = repositorioSalas.findById(salaID);
-        if (sala.isPresent()){
+        if (sala.isPresent()) {
             sala.get().setEstado(true);
             repositorioSalas.save(sala.get());
             return ResponseEntity.status(200).body("Sala inhabilitada exitosamente");
         }
         return ResponseEntity.status(403).body("Ocurrio un problema en la inhabilitacion");
+
+    }
 
     @PutMapping("salasIcesi/administrador/habilitar/{salaID}")
     public ResponseEntity<?> habilitarSala(@PathVariable("salaID") long salaID){
