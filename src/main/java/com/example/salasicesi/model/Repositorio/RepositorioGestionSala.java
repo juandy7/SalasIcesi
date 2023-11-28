@@ -22,4 +22,7 @@ public interface RepositorioGestionSala extends CrudRepository<GestionSala,Long>
 
     @Query("SELECT u FROM GestionSala u WHERE u.usuario.id=:id")
     List<GestionSala> verMisReservas(long id);
+
+    @Query("SELECT s FROM GestionSala s WHERE s.dia =:dia AND  s.hora =:hora AND s.sala.numSala =:numSala")
+    List<GestionSala> cancelarPorNumSala(LocalDate dia, LocalTime hora,String numSala);
 }
