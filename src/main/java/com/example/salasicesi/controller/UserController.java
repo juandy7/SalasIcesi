@@ -39,7 +39,7 @@ public class UserController {
 
         if (!usuarios.isEmpty()) {
             Usuario firstUser = usuarios.get(0);
-            UsuarioDTO userReturn = new UsuarioDTO(firstUser.getId(),firstUser.getNombre(), firstUser.getEmail()
+            UsuarioDTO userReturn = new UsuarioDTO(firstUser.getId(), firstUser.getNombre(), firstUser.getEmail()
                     , firstUser.getContrasenha(), firstUser.getCodigo(), firstUser.getCategoria());
             return ResponseEntity.status(200).body(userReturn);
 
@@ -62,7 +62,7 @@ public class UserController {
     }
 
     @GetMapping("salasIcesi/informacion/{sala}")
-    public ResponseEntity<?> listInfo (@PathVariable("sala") String sala) {
+    public ResponseEntity<?> listInfo(@PathVariable("sala") String sala) {
         try {
             var salaInfo = repositorioSalas.findClassByNum(sala).get(0);
             if (salaInfo != null) {
@@ -94,88 +94,89 @@ public class UserController {
         return ResponseEntity.status(403).body("Sala disponible");
 
     }
+
     @PostMapping("salasIcesi/reservas/sala")
-        public ResponseEntity<?> reservarSala (@RequestBody GestionSalaDTO gestionSalaDTO){
-            var sala = repositorioSalas.findById(gestionSalaDTO.getIdSala());
-            var usuario = repositorioUsuario.findById(gestionSalaDTO.getIdUsuario());
-            if (sala.isPresent() && usuario.isPresent() && sala.get().isEstado() == false) {
-                List<GestionSala> salasReservadas = repositorioGestionSala.verificacionEstadoSala(gestionSalaDTO.getDia(), gestionSalaDTO.getHora());
-                if (salasReservadas.isEmpty()) {
-                    GestionSala nuevaReserva = new GestionSala();
-                    nuevaReserva.setHora(gestionSalaDTO.getHora());
-                    nuevaReserva.setEstado(true);
-                    nuevaReserva.setToken(generateRandomToken());
-                    nuevaReserva.setDia(gestionSalaDTO.getDia());
-                    nuevaReserva.setSala(sala.get());
-                    nuevaReserva.setUsuario(usuario.get());
-                    repositorioGestionSala.save(nuevaReserva);
-                    return ResponseEntity.status(200).body("Sala reservada exitosamente");
-                } else {
-                    return ResponseEntity.status(403).body("No se pudo realizar la solicitud. La sala ya está reservada a esa hora.");
-                }
+    public ResponseEntity<?> reservarSala(@RequestBody GestionSalaDTO gestionSalaDTO) {
+        var sala = repositorioSalas.findById(gestionSalaDTO.getIdSala());
+        var usuario = repositorioUsuario.findById(gestionSalaDTO.getIdUsuario());
+        if (sala.isPresent() && usuario.isPresent() && sala.get().isEstado() == false) {
+            List<GestionSala> salasReservadas = repositorioGestionSala.verificacionEstadoSala(gestionSalaDTO.getDia(), gestionSalaDTO.getHora());
+            if (salasReservadas.isEmpty()) {
+                GestionSala nuevaReserva = new GestionSala();
+                nuevaReserva.setHora(gestionSalaDTO.getHora());
+                nuevaReserva.setEstado(true);
+                nuevaReserva.setToken(generateRandomToken());
+                nuevaReserva.setDia(gestionSalaDTO.getDia());
+                nuevaReserva.setSala(sala.get());
+                nuevaReserva.setUsuario(usuario.get());
+                repositorioGestionSala.save(nuevaReserva);
+                return ResponseEntity.status(200).body("Sala reservada exitosamente");
             } else {
-                return ResponseEntity.status(403).body("No se pudo realizar la solicitud, probablemente la sala esta inhabilitada");
+                return ResponseEntity.status(403).body("No se pudo realizar la solicitud. La sala ya está reservada a esa hora.");
             }
+        } else {
+            return ResponseEntity.status(403).body("No se pudo realizar la solicitud, probablemente la sala esta inhabilitada");
         }
+    }
 
 
-        private String generateRandomToken () {
-            Random random = new Random();
-            StringBuilder stringBuilder = new StringBuilder(4);
-            for (int i = 0; i < 4; i++) {
-                stringBuilder.append(random.nextInt(10));
+    private String generateRandomToken() {
+        Random random = new Random();
+        StringBuilder stringBuilder = new StringBuilder(4);
+        for (int i = 0; i < 4; i++) {
+            stringBuilder.append(random.nextInt(10));
+        }
+        return stringBuilder.toString();
+    }
+
+
+    @GetMapping("salasIcesi/misReservas/{id}")
+    public ResponseEntity<?> misReservas(@PathVariable("id") long id) {
+        var usuario = repositorioUsuario.findById(id);
+        if (usuario.isPresent()) {
+            var misReservas = repositorioGestionSala.verMisReservas(id);
+            ArrayList<MisReservasDTO> misReservasDTO = new ArrayList<>();
+            for (int i = 0; i < misReservas.size(); i++) {
+                MisReservasDTO sala = new MisReservasDTO(misReservas.get(i).getId(),
+                        misReservas.get(i).getHora(),
+                        misReservas.get(i).getDia(),
+                        misReservas.get(i).getSala().getNumSala(),
+                        misReservas.get(i).getToken()
+                );
+                misReservasDTO.add(sala);
             }
-            return stringBuilder.toString();
+
+            return ResponseEntity.status(200).body(misReservasDTO);
         }
-
-
-     @GetMapping("salasIcesi/misReservas/{id}")
-        public ResponseEntity<?> misReservas ( @PathVariable("id") long id){
-            var usuario = repositorioUsuario.findById(id);
-            if (usuario.isPresent()) {
-                var misReservas = repositorioGestionSala.verMisReservas(id);
-                ArrayList<MisReservasDTO> misReservasDTO = new ArrayList<>();
-                for (int i = 0; i < misReservas.size(); i++) {
-                    MisReservasDTO sala = new MisReservasDTO(misReservas.get(i).getId(),
-                            misReservas.get(i).getHora(),
-                            misReservas.get(i).getDia(),
-                            misReservas.get(i).getSala().getNumSala(),
-                            misReservas.get(i).getToken()
-                    );
-                    misReservasDTO.add(sala);
-                }
-
-                return ResponseEntity.status(200).body(misReservasDTO);
-            }
-            return ResponseEntity.status(403).body("No se encontraron salas ligadas a este usuario");
-        }
+        return ResponseEntity.status(403).body("No se encontraron salas ligadas a este usuario");
+    }
 
     @GetMapping("Salasicesi/salones/{edificio}")
-        //Recibo un header que es la letra del Edificio
-        public ResponseEntity<?> listSalones (@PathVariable("edificio") String edificio){
-            //Tengo una variable "edificioXsalon" que en busca el edificioId(Nombre del edificio) del edificio que me mandaron por el header
-            var edificioXsalon = repositorioSalas.findEdificio(edificio);
-            //En caso de que ecuentre un edificio (String) entonces se hace un if
-            if (!edificioXsalon.isEmpty()) {
-                //Si hay algun edificio con ese nombre entonces toma el ID de ese edificio de la base de datos y como solo hay uno, toma el de la primera posicion
+    //Recibo un header que es la letra del Edificio
+    public ResponseEntity<?> listSalones(@PathVariable("edificio") String edificio) {
+        //Tengo una variable "edificioXsalon" que en busca el edificioId(Nombre del edificio) del edificio que me mandaron por el header
+        var edificioXsalon = repositorioSalas.findEdificio(edificio);
+        //En caso de que ecuentre un edificio (String) entonces se hace un if
+        if (!edificioXsalon.isEmpty()) {
+            //Si hay algun edificio con ese nombre entonces toma el ID de ese edificio de la base de datos y como solo hay uno, toma el de la primera posicion
 
-                var edificioEncontrado = edificioXsalon.get(0);
+            var edificioEncontrado = edificioXsalon.get(0);
 
-                //Una vez encontrado el ID del edificio se ve que salones estan asociados a este edificio
-                var salones = repositorioSalas.findByEdificio(edificioEncontrado.getId());
-                ;
-                //PENDIENTE: Retornar en una lista(me imagino) de cada salon asociado al edificio
-                return ResponseEntity.status(200).body(salones);
-            } else {
-                return ResponseEntity.status(404).body("Edificio no encontrado");
-            }
-
+            //Una vez encontrado el ID del edificio se ve que salones estan asociados a este edificio
+            var salones = repositorioSalas.findByEdificio(edificioEncontrado.getId());
+            ;
+            //PENDIENTE: Retornar en una lista(me imagino) de cada salon asociado al edificio
+            return ResponseEntity.status(200).body(salones);
+        } else {
+            return ResponseEntity.status(404).body("Edificio no encontrado");
         }
 
+    }
+
     @DeleteMapping("salasIcesi/misReservas/cancelar/{reservaId}")
-    public ResponseEntity<?> cancelarReserva(@PathVariable("reservaId") long reservaID){
+    public ResponseEntity<?> cancelarReserva(@PathVariable("reservaId") long reservaID) {
         var salaEncontrada = repositorioGestionSala.findById(reservaID);
-        if (!salaEncontrada.isEmpty()){
+        if (!salaEncontrada.isEmpty()) {
             repositorioGestionSala.deleteById(reservaID);
             return ResponseEntity.status(200).body("Sala eliminada exitosamente");
         }
@@ -183,7 +184,7 @@ public class UserController {
     }
 
     @PostMapping("salasIcesi/administrador/reservas/sala")
-    public ResponseEntity<?> reservarSalaAdministrador (@RequestBody GestionSalaDTO gestionSalaDTO) {
+    public ResponseEntity<?> reservarSalaAdministrador(@RequestBody GestionSalaDTO gestionSalaDTO) {
         var sala = repositorioSalas.findById(gestionSalaDTO.getIdSala());
         var usuario = repositorioUsuario.findUserByEmail(gestionSalaDTO.getCorreoUsuario());
         if (sala.isPresent() && !usuario.isEmpty()) {
@@ -220,9 +221,9 @@ public class UserController {
     }
 
     @PutMapping("salasIcesi/administrador/habilitar/{salaID}")
-    public ResponseEntity<?> habilitarSala(@PathVariable("salaID") long salaID){
+    public ResponseEntity<?> habilitarSala(@PathVariable("salaID") long salaID) {
         Optional<Sala> sala = repositorioSalas.findById(salaID);
-        if (sala.isPresent()){
+        if (sala.isPresent()) {
             sala.get().setEstado(false);
             repositorioSalas.save(sala.get());
             return ResponseEntity.status(200).body("Sala habilitada exitosamente");
@@ -230,5 +231,16 @@ public class UserController {
         return ResponseEntity.status(403).body("Ocurrio un problema");
 
 
+    }
+
+    @DeleteMapping("salasIcesi/administrador/cancelar")
+    public ResponseEntity<?> cancelarReserva(@RequestBody MisReservasDTO misReservasDTO) {
+        var salaID = repositorioSalas.findClassByNum(misReservasDTO.getNumSala());
+        var salaEncontrada = repositorioGestionSala.buscarPorIDsala(salaID.get(0).getId());
+        if (!salaEncontrada.isEmpty() && salaEncontrada.get(0).getHora().equals(misReservasDTO.getHora()) && salaEncontrada.get(0).getDia().equals(misReservasDTO.getDia())) {
+            repositorioGestionSala.deleteById(salaEncontrada.get(0).getId());
+            return ResponseEntity.status(200).body("Sala eliminada exitosamente");
+        }
+        return ResponseEntity.status(403).body("Ocurrio un problema al eliminar la sala");
     }
 }
