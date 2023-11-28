@@ -233,9 +233,10 @@ public class UserController {
 
     @DeleteMapping("salasIcesi/administrador/cancelar")
     public ResponseEntity<?> cancelarReserva(@RequestBody MisReservasDTO misReservasDTO) {
-        var salaID = repositorioSalas.findClassByNum(misReservasDTO.getNumSala());
-        var salaEncontrada = repositorioGestionSala.buscarPorIDsala(salaID.get(0).getId());
-        if (!salaEncontrada.isEmpty() && salaEncontrada.get(0).getHora().equals(misReservasDTO.getHora()) && salaEncontrada.get(0).getDia().equals(misReservasDTO.getDia())) {
+        var salaEncontrada = repositorioGestionSala.cancelarPorNumSala(misReservasDTO.getDia(),
+                                                                       misReservasDTO.getHora(),
+                                                                    misReservasDTO.getNumSala());
+        if (!salaEncontrada.isEmpty()){
             repositorioGestionSala.deleteById(salaEncontrada.get(0).getId());
             return ResponseEntity.status(200).body("Sala eliminada exitosamente");
         }
