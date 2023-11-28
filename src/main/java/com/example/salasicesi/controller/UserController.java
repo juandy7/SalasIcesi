@@ -228,7 +228,5 @@ public class UserController {
             return ResponseEntity.status(200).body("Sala habilitada exitosamente");
         }
         return ResponseEntity.status(403).body("Ocurrio un problema");
-
-
     }
 }
