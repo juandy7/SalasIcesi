@@ -241,7 +241,7 @@ public class UserController {
         return ResponseEntity.status(403).body("Ocurrio un problema al eliminar la sala");
     }
 
-    @GetMapping("salasIcesi/validarToken")
+    @GetMapping("salasIcesi/validarToken/{token}")
         public ResponseEntity<?> validarToken(@PathVariable String token){
             var sala = repositorioGestionSala.validarToken(token);
             if (!sala.isEmpty()){
