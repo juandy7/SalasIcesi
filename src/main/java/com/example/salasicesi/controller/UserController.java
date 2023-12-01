@@ -64,7 +64,7 @@ public class UserController {
         var user = repositorioUsuario.findById(aute);
         if (user.isPresent()) {
             return ResponseEntity.status(200).body(
-                    repositorioUsuario.findAll());
+                    repositorioSalas.findAll());
         } else {
             return ResponseEntity.status(403).body("No tiene acceso permitido");
         }
