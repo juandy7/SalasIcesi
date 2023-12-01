@@ -242,20 +242,13 @@ public class UserController {
     }
 
     @GetMapping("salasIcesi/validarToken/{token}")
-        public ResponseEntity<?> validarToken(@PathVariable String token){
-            var sala = repositorioGestionSala.validarToken(token);
-            if (!sala.isEmpty()){
-                ZonedDateTime ahora = ZonedDateTime.now();
-                ZonedDateTime fechaSala = sala.get(0).getDia().atStartOfDay(ZoneId.systemDefault());
-
-                if (ahora.toLocalDate().isAfter(fechaSala.toLocalDate()) ||
-                        (ahora.toLocalDate().equals(fechaSala.toLocalDate()) && ahora.toLocalTime().isAfter(fechaSala.toLocalTime()))) {
-                    return ResponseEntity.status(403).body("La hora y fecha del sistema superan la hora y fecha de la sala");
-                }
-                return ResponseEntity.status(200).body("Sala desbloqueada");
-            }
-            return ResponseEntity.status(403).body("Codigo no valido");
+    public ResponseEntity<?> validarToken(@PathVariable String token){
+        var sala = repositorioGestionSala.validarToken(token);
+        if (!sala.isEmpty()) {
+            return ResponseEntity.status(200).body("Sala desbloqueada");
         }
+        return ResponseEntity.status(403).body("Codigo no disponible");
+    }
 
 }
 
