@@ -13,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 
 import java.util.*;
 
@@ -242,4 +240,24 @@ public class UserController {
         }
         return ResponseEntity.status(403).body("Ocurrio un problema al eliminar la sala");
     }
+
+    @GetMapping("salasIcesi/validarToken")
+        public ResponseEntity<?> validarToken(@PathVariable String token){
+            var sala = repositorioGestionSala.validarToken(token);
+            if (!sala.isEmpty()){
+                ZonedDateTime ahora = ZonedDateTime.now();
+                ZonedDateTime fechaSala = sala.get(0).getDia().atStartOfDay(ZoneId.systemDefault());
+
+                if (ahora.toLocalDate().isAfter(fechaSala.toLocalDate()) ||
+                        (ahora.toLocalDate().equals(fechaSala.toLocalDate()) && ahora.toLocalTime().isAfter(fechaHoraSala.toLocalTime()))) {
+                    return ResponseEntity.status(403).body("La hora y fecha del sistema superan la hora y fecha de la sala");
+                }
+                return ResponseEntity.status(200).body("Sala desbloqueada");
+            }
+            return ResponseEntity.status(403).body("Codigo no valido");
+
+        }
+
 }
+
+

@@ -25,4 +25,7 @@ public interface RepositorioGestionSala extends CrudRepository<GestionSala,Long>
 
     @Query("SELECT s FROM GestionSala s WHERE s.dia =:dia AND  s.hora =:hora AND s.sala.numSala =:numSala")
     List<GestionSala> cancelarPorNumSala(LocalDate dia, LocalTime hora,String numSala);
+
+    @Query("SELECT s FROM GestionSala s WHERE s.token =:token")
+    List<GestionSala> validarToken(String token);
 }
