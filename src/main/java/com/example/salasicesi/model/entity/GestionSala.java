@@ -1,4 +1,5 @@
 package com.example.salasicesi.model.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -16,10 +17,12 @@ public class GestionSala {
     private String token;
     private boolean estado;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_sala")
     private Sala sala;
