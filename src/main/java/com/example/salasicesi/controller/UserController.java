@@ -48,37 +48,23 @@ public class UserController {
 
 
     //Mostrar todos los usuarios
-    @GetMapping("salasIcesi/administrador/userAll/{Autorizacion}")
-    public ResponseEntity<?> listUsuarios(@PathVariable("Autorizacion") long aute) {
-        var user = repositorioUsuario.findById(aute);
-        if (user.isPresent()) {
+    @GetMapping("salasIcesi/administrador/userAll")
+    public ResponseEntity<?> listUsuarios() {
             return ResponseEntity.status(200).body(
                     repositorioUsuario.findAll());
-        } else {
-            return ResponseEntity.status(403).body("No tiene acceso permitido");
-        }
     }
 
     @GetMapping("salasIcesi/administrador/salasAll/{Autorizacion}")
-    public ResponseEntity<?> listSalas(@PathVariable("Autorizacion") long aute) {
-        var user = repositorioUsuario.findById(aute);
-        if (user.isPresent()) {
+    public ResponseEntity<?> listSalas() {
             return ResponseEntity.status(200).body(
                     repositorioSalas.findAll());
-        } else {
-            return ResponseEntity.status(403).body("No tiene acceso permitido");
-        }
+
     }
 
     @GetMapping("salasIcesi/administrador/reservasAll/{Autorizacion}")
-    public ResponseEntity<?> listReservas(@PathVariable("Autorizacion") long aute) {
-        var user = repositorioUsuario.findById(aute);
-        if (user.isPresent()) {
+    public ResponseEntity<?> listReservas() {
             return ResponseEntity.status(200).body(
                     repositorioGestionSala.findAll());
-        } else {
-            return ResponseEntity.status(403).body("No tiene acceso permitido");
-        }
     }
 
 
