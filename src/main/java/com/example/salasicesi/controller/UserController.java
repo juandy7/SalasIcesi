@@ -54,14 +54,14 @@ public class UserController {
                     repositorioUsuario.findAll());
     }
 
-    @GetMapping("salasIcesi/administrador/salasAll/{Autorizacion}")
+    @GetMapping("salasIcesi/administrador/salasAll")
     public ResponseEntity<?> listSalas() {
             return ResponseEntity.status(200).body(
                     repositorioSalas.findAll());
 
     }
 
-    @GetMapping("salasIcesi/administrador/reservasAll/{Autorizacion}")
+    @GetMapping("salasIcesi/administrador/reservasAll")
     public ResponseEntity<?> listReservas() {
             return ResponseEntity.status(200).body(
                     repositorioGestionSala.findAll());
